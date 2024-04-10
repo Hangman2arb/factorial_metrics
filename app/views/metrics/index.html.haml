@@ -1,0 +1,9 @@
+.flex.justify-center
+  = render ModalComponent.new(title: t('metrics.data_modal.title'), description: t('metrics.data_modal.description'), text_button: t('metrics.data_modal.add_data_button')) do
+    = render partial: 'add_data_form'
+
+= turbo_frame_tag 'metrics_chart' do
+  = line_chart data_metrics_path(grouping: @grouping), refresh: Metric::REFRESH_TIME
+
+= form_with url: metrics_path, method: :get, class: "max-w-lg mx-auto", data: { controller: 'auto-submit', turbo_frame: 'metrics_chart' } do |form|
+  = render SelectComponent.new(form: form, key: :grouping, label: t("labels.show_by"), options_for_select: options_for_select(Metric::GROUPING_TYPES.map {|grouping| [t(".#{grouping}"), grouping]}, @grouping), data: { action: 'change->auto-submit#submit' }, showSearch: '', placeholder: false)

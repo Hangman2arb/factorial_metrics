@@ -1,0 +1,15 @@
+%div{ data: { controller: 'modal'} }
+  .btn-primary{ data: { action: 'click->modal#openModal' } }
+    = @text_button
+  .modal-overlay.hidden{ data: { modal_target: 'overlay', action: 'click->modal#closeModal' }, class: 'z-50 fixed inset-0 bg-light backdrop-blur bg-opacity-50 flex items-center justify-center' }
+    .modal-container.hidden{ data: { modal_target: 'container' }, class: 'fixed inset-0 overflow-y-auto flex items-center justify-center h-full w-full p-4' }
+      .modal-content{ data: { modal_target: 'content', action: 'click->modal#stopPropagation' }, class: 'bg-shadowy-700 m-auto p-6 rounded-2xl shadow-lg text-shadowy-200 relative' }
+        .absolute.top-2.right-2.cursor-pointer{ data: { action: 'click->modal#closeModal' } }
+          = render BootstrapIconWithTextComponent.new(icon: 'x', extra_classes: 'text-2xl', button_extra_classes: 'cursor-pointer')
+        - if @title.present?
+          %h2.text-lg.font-bold.text-primary.mb-4
+            = @title
+        - if @description.present?
+          %p.mb-4
+            = @description
+        = content

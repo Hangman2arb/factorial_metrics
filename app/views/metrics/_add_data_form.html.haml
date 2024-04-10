@@ -1,0 +1,8 @@
+= form_with url: metrics_path, method: :post, local: true, id: 'new_metric_form' do |form|
+  #error_message
+  = render InputComponent.new(form: form, key: :name, type: 'text_field', label: t('labels.name'))
+  = render InputComponent.new(form: form, key: :value, type: 'number_field', label: t('labels.value'))
+  .flex.justify-end.gap-4.mt-4
+    = form.submit t('labels.add'), class: 'btn-primary'
+    %button.btn-secondary{ type: 'button', data: { action: 'click->modal#closeModal' } }
+      = t('labels.close')

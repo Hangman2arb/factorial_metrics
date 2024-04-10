@@ -1,0 +1,18 @@
+en:
+  labels:
+    close: Close
+    name: Name
+    submit: Submit
+    value: Value
+    show_by: Show by
+    add: Add
+  metrics:
+    data_modal:
+      add_data_button: Add Data
+      description: Manually add data to automatically visualize it on the chart.
+      title: Add Data
+      error: 'Error: %{error}'
+    index:
+      day: Day
+      hour: Hour
+      minute: Minute
